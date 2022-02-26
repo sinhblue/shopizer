@@ -10,8 +10,10 @@ pipeline {
             steps {
                 sh 'echo "shopizer build and test"'
                 sh '''
-                    ls -lah
+                    pwd
                     set -x
+                    id jenkins
+                    cat /home/shopizer/tools/shopizer.sh
                     /home/shopizer/tools/shopizer.sh tests
                 '''
             }
