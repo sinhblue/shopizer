@@ -15,7 +15,7 @@ pipeline {
                 sh 'echo "This is test stage"'
                 sh '''
                     echo "Multiline shell steps works too"
-                    ls -lah
+                    echo ${BUILD_NUMBER}
                 '''
             }
         }
