@@ -1,23 +1,33 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Shopizer Test') {
+            agent {
+                docker {
+                    image 'shopizerecomm/ci:java11'
+                }
+            }
             steps {
-                sh 'echo "This is build stage"'
+                sh 'echo "shopizer build and test"'
                 sh '''
-                    echo "Multiline shell steps works too"
                     ls -lah
+                    set -x
+                    /home/shopizer/tools/shopizer.sh tests
                 '''
             }
         }
-        stage('Test') {
+        stage('Build image') {
             steps {
-                sh 'echo "This is test stage"'
                 sh '''
-                    echo "Multiline shell steps works too"
-                    echo ${BUILD_NUMBER}
-                    echo ${BUILD_TAG}
-                    echo ${NODE_NAME}
+                    echo "cd sm-shop && docker build . -t $DOCKER_ID/shopizer:$BUILD_NUMBER"
+                '''
+            }
+        }
+        stage('Push image') {
+            steps {
+                sh '''
+                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+                    docker push $DOCKER_ID/shopizer:$BUILD_NUMBER
                 '''
             }
         }
