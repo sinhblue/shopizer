@@ -10,10 +10,11 @@ pipeline {
             steps {
                 sh 'echo "shopizer build and test"'
                 sh '''
+                    mkdir test
                     pwd
-                    set -x
                     id $(whoami)
                     cat /home/shopizer/tools/shopizer.sh
+                    set -x
                     /home/shopizer/tools/shopizer.sh tests
                 '''
             }
