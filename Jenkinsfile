@@ -12,7 +12,7 @@ pipeline {
                 sh '''
                     pwd
                     set -x
-                    id jenkins
+                    id $(whoami)
                     cat /home/shopizer/tools/shopizer.sh
                     /home/shopizer/tools/shopizer.sh tests
                 '''
