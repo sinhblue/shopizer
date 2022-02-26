@@ -16,6 +16,8 @@ pipeline {
                 sh '''
                     echo "Multiline shell steps works too"
                     echo ${BUILD_NUMBER}
+                    echo ${BUILD_TAG}
+                    echo ${NODE_NAME}
                 '''
             }
         }
