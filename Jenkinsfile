@@ -1,6 +1,21 @@
 pipeline {
     agent any
+    dir '/tmp'
     stages {
+        stage('Shopizer Test') {
+            agent {
+                docker {
+                    image 'shopizerecomm/ci:java11'
+                }
+            }
+            steps {
+                sh 'echo "shopizer build and test"'
+                sh '''
+                    set -x
+                    /home/shopizer/tools/shopizer.sh tests
+                '''
+            }
+        }
         stage('Build image') {
             steps {
                 sh '''
@@ -12,7 +27,7 @@ pipeline {
         stage('Push image') {
             steps {
                 sh '''
-                    echo "hoilamgi@287" | docker login --username sinhblue --password-stdin
+                    echo "hoilamgi@287" | docker login --username "sinhblue" --password-stdin
                     docker push sinhblue/shopizer:$BUILD_NUMBER
                 '''
             }
