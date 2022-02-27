@@ -1,11 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image 'shopizerecomm/ci:java11'
-        }
-    }
+    agent any
     stages {
         stage('Shopizer Test') {
+            agent {
+                docker {
+                    image 'shopizerecomm/ci:java11'
+                }
+            }
             dir('/tmp') {
                 sh 'echo "shopizer build and test"'
                 sh '''
