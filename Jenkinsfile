@@ -14,6 +14,7 @@ pipeline {
             steps {
                 sh 'echo "shopizer build and test"'
                 sh '''
+                    pwd
                     set -x
                     /home/shopizer/tools/shopizer.sh tests
                 '''
