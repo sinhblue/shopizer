@@ -7,7 +7,7 @@ pipeline {
                     image 'shopizerecomm/ci:java11'
                 }
             }
-            dir('/tmp') {
+            steps {
                 sh 'echo "shopizer build and test"'
                 sh '''
                     pwd
