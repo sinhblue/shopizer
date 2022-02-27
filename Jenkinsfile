@@ -1,6 +1,7 @@
 pipeline {
-    agent any
-    dir '/tmp'
+    agent(any) {
+        dir: "/tmp"
+    }
     stages {
         stage('Shopizer Test') {
             agent {
