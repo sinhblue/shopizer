@@ -2,12 +2,11 @@ pipeline {
     agent {
         docker {
             image 'shopizerecomm/ci:java11'
-            customWorkspace '/tmp'
         }
     }
     stages {
         stage('Shopizer Test') {
-            steps {
+            dir('/tmp') {
                 sh 'echo "shopizer build and test"'
                 sh '''
                     pwd
