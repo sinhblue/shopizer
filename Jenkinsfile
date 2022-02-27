@@ -11,7 +11,7 @@ pipeline {
         stage('Push image') {
             steps {
                 sh '''
-                    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID" --password-stdin
+                    echo "hoilamgi@287" | docker login --username sinhblue --password-stdin
                     docker push $DOCKER_ID/shopizer:$BUILD_NUMBER
                 '''
             }
