@@ -4,7 +4,7 @@ pipeline {
         stage('Build image') {
             steps {
                 sh '''
-                    echo "cd sm-shop && docker build . -t $DOCKER_ID/shopizer:$BUILD_NUMBER"
+                    echo "cd sm-shop && docker build . -t sinhblue/shopizer:$BUILD_NUMBER"
                 '''
             }
         }
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''
                     echo "hoilamgi@287" | docker login --username sinhblue --password-stdin
-                    docker push $DOCKER_ID/shopizer:$BUILD_NUMBER
+                    docker push sinhblue/shopizer:$BUILD_NUMBER
                 '''
             }
         }
