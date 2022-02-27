@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'shopizerecomm/ci:java11'
-            dir "/tmp"
+            dir '/tmp'
         }
     }
     stages {
