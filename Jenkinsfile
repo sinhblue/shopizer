@@ -4,7 +4,8 @@ pipeline {
         stage('Build image') {
             steps {
                 sh '''
-                    echo "cd sm-shop && docker build . -t sinhblue/shopizer:$BUILD_NUMBER"
+                    cd sm-shop
+                    docker build . -t sinhblue/shopizer:$BUILD_NUMBER
                 '''
             }
         }
