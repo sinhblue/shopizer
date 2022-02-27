@@ -1,5 +1,9 @@
 pipeline {
-    agent docker
+    agent {
+        docker {
+            image 'ubuntu:18.04'
+        }
+    }
     stages {
         stage('Shopizer CI') {
             agent {
