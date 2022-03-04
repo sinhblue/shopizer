@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:18.04'
-        }
-    }
+    agent any
     stages {
         stage('Shopizer CI') {
             agent {
@@ -25,14 +21,6 @@ pipeline {
                 sh '''
                     cd sm-shop
                     docker build . -t sinhblue/shopizer:$BUILD_NUMBER
-                '''
-            }
-        }
-        stage('Push image') {
-            steps {
-                sh '''
-                    echo "hoilamgi@287" | docker login --username "sinhblue" --password-stdin
-                    docker push sinhblue/shopizer:$BUILD_NUMBER
                 '''
             }
         }
