@@ -18,13 +18,5 @@ pipeline {
                 '''
             }
         }
-        stage('Build image') {
-            steps {
-                sh '''
-                    cd sm-shop
-                    docker build . -t sinhblue/shopizer:$BUILD_NUMBER
-                '''
-            }
-        }
     }
 }
