@@ -8,6 +8,7 @@ pipeline {
         stage('Shopizer CI') {
             steps {
                 checkout scm
+                export CIRCLE_WORKING_DIRECTORY=/tmp
                 sh 'echo "shopizer build and test"'
                 sh '''
                     pwd
