@@ -8,8 +8,6 @@ pipeline {
         stage('Shopizer CI') {
             steps {
                 checkout scm
-            }
-            steps {
                 sh 'echo "shopizer build and test"'
                 sh '''
                     pwd
