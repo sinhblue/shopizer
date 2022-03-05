@@ -11,6 +11,7 @@ pipeline {
                 sh 'echo "shopizer build and test"'
                 sh '''
                     export CIRCLE_WORKING_DIRECTORY=/tmp
+                    echo $HOME
                     pwd
                     ls -lah
                     set -x
