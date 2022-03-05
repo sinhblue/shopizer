@@ -12,7 +12,7 @@ pipeline {
                     whoami
                     pwd
                     ls -lah
-                    ./mvnw clean install
+                    mvn clean install
                     cd sm-shop
                     ls -lah
                 '''
