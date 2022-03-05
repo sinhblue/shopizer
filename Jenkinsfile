@@ -11,6 +11,7 @@ pipeline {
                 checkout scm
                 sh 'echo "shopizer build"'
                 sh '''
+                    whoami
                     pwd
                     ls -lah
                     ./mvnw clean install
