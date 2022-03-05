@@ -11,7 +11,7 @@ pipeline {
                     export CIRCLE_WORKING_DIRECTORY=/tmp
                     export HOME=/home/$(whoami)
                 '''
-                dir('/tmp') {
+                dir('/tmp/shopizer') {
                     checkout scm
                     sh 'echo "shopizer build and test"'
                     sh '''
