@@ -20,11 +20,12 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                withCredentials([string(credentialsId: 'DOCKER_ID', variable: 'DOCKER_ID'), string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
+                withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
                     sh '''
-                        cd sm-shop && docker build . -t $DOCKER_ID/shopizer:$BUILD_NUM
+                        DOCKER_ID=sinhblue
+                        cd sm-shop && docker build . -t $DOCKER_ID/shopizer:$BUILD_NUMBER
                         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-                        docker push $DOCKER_ID/shopizer:$BUILD_NUM
+                        docker push $DOCKER_ID/shopizer:$BUILD_NUMBER
                     '''
                 }
             }
