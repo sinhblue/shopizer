@@ -1,26 +1,20 @@
 pipeline {
     agent {
         docker {
-            image 'shopizerecomm/ci:java11'
+            image 'maven:3.8.4-ibmjava-8-alpine'
         }
     }
     stages {
-        stage('Shopizer CI') {
+        stage('build') {
             steps {
+                checkout scm
+                sh 'echo "shopizer build"'
                 sh '''
-                    export CIRCLE_WORKING_DIRECTORY=/tmp
-                    export HOME=/home/$(whoami)
+                    pwd
+                    ls -lah
+                    ./mvnw clean install
+                    cd sm-shop
                 '''
-                dir('/tmp/shopizer') {
-                    checkout scm
-                    sh 'echo "shopizer build and test"'
-                    sh '''
-                        pwd
-                        ls -lah
-                        set -x
-                        /home/shopizer/tools/shopizer.sh tests
-                    '''
-                }
             }
         }
     }
