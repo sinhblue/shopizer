@@ -15,6 +15,8 @@ pipeline {
                     checkout scm
                     sh 'echo "shopizer build and test"'
                     sh '''
+                        export CIRCLE_WORKING_DIRECTORY=/tmp
+                        export HOME=/home/$(whoami)
                         pwd
                         ls -lah
                         set -x
