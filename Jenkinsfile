@@ -1,8 +1,7 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.4-ibmjava-8-alpine'
-        }
+    agent any
+    tools {
+        maven "maven-3.8.4"
     }
     stages {
         stage('build') {
@@ -15,6 +14,7 @@ pipeline {
                     ls -lah
                     ./mvnw clean install
                     cd sm-shop
+                    ls -lah
                 '''
             }
         }
